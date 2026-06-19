@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mariana Barreto - Systems Engineering Presentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&family=Azeret+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* CONFIGURACIÓN DE BASE */
+        * { box-sizing: border-box; }
+        body {
+            background-color: #0a0a0a;
+            display: grid; gap: 40px; grid-template-columns: 1fr;
+            margin: 0; min-height: 100vh; padding: 40px 0; place-items: center;
+        }
+        .slide-container {
+            align-items: flex-start; background-color: #000000;
+            border: 1px solid #1a1a1a; border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+            display: flex; flex-direction: column; font-family: 'Urbanist', sans-serif;
+            height: 720px; justify-content: center; overflow: hidden;
+            padding: 60px; position: relative; width: 1280px;
+        }
+        .slide-container::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.05) 0%, transparent 40%); z-index: 0;
+        }
+        .slide-container::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(#1a1a1a 1px, transparent 1px);
+            background-size: 30px 30px; opacity: 0.3; z-index: 0;
+        }
+        .slide-container > * { position: relative; z-index: 1; }
+        h1, h2, h3 { color: #f5f5f5; font-family: 'Urbanist', sans-serif; margin: 0; }
+        .slide-title {
+            font-size: 48px; font-weight: 700; margin-bottom: 40px; text-align: left;
+            width: 100%; border-left: 6px solid #00ff41; padding-left: 20px;
+            color: #00ff41; text-transform: uppercase; letter-spacing: 2px;
+        }
+        p, li, td, th { color: #d1d1d1; font-size: 20px; line-height: 1.6; }
+        .accent-text { color: #00ff41; font-family: 'Azeret Mono', monospace; }
+        .content-area { display: flex; flex-direction: column; flex-grow: 1; justify-content: center; width: 100%; }
+        .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 100%; align-items: center; }
+        .tiled-content { display: flex; gap: 30px; width: 100%; }
+        .tile {
+            background-color: #0a0a0a; border: 1px solid #333; border-radius: 8px;
+            flex: 1; padding: 30px; display: flex; flex-direction: column; gap: 15px; transition: border-color 0.3s;
+        }
+        .tile:hover { border-color: #00ff41; }
+        .tile i { color: #00ff41; font-size: 36px; }
+        .tile h3 { color: #00ff41; font-family: 'Azeret Mono', monospace; font-size: 24px; }
+        .image-wrapper {
+            border: 1px solid #00ff41; border-radius: 12px; overflow: hidden;
+            height: 380px; box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+        }
+        .image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        .table-layout table { width: 100%; border-collapse: collapse; }
+        .table-layout th { background-color: #1a1a1a; color: #00ff41; text-align: left; padding: 20px; font-family: 'Azeret Mono', monospace; }
+        .table-layout td { padding: 20px; border-bottom: 1px solid #333; }
+        .bleed-image-layout { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0; align-items: start; }
+        .bleed-image-layout .content-container { padding: 60px; display: flex; flex-direction: column; justify-content: center; height: 100%; }
+        .bleed-image-side { height: 720px; width: 100%; object-fit: cover; }
+        .quote-layout { text-align: center; max-width: 900px; margin: 0 auto; }
+        .quote-layout blockquote { font-size: 38px; color: #f5f5f5; font-style: italic; border: none; padding: 0; margin-bottom: 20px; }
+        .quote-layout blockquote::before { content: '>'; color: #00ff41; margin-right: 15px; font-family: 'Azeret Mono', monospace; }
+        #formula-container { background: #0a0a0a; padding: 20px; border: 1px dashed #00ff41; border-radius: 8px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="slide-container" id="slide1">
+    <div class="content-area" style="text-align: center; align-items: center;">
+        <p class="accent-text" style="font-size: 24px; margin-bottom: 10px;">SYSTEM_INIT: SUCCESS</p>
+        <h1 style="font-size: 84px; line-height: 1; margin-bottom: 20px;">MARIANA <span style="color: #00ff41;">BARRETO</span></h1>
+        <p style="font-size: 32px; letter-spacing: 4px; border-top: 1px solid #333; padding-top: 20px; width: 600px;">INGENIERA DE SISTEMAS</p>
+    </div>
+</div>
+
+<div class="slide-container" id="slide2">
+    <div class="content-area">
+        <div class="quote-layout">
+            <p class="accent-text">// TERMINAL_MISSION_LOG</p>
+            <blockquote>Optimizar la realidad a través de sistemas robustos, automatización inteligente y la formación de la próxima generación tecnológica.</blockquote>
+            <p style="font-size: 24px; color: #888;">Ingeniería aplicada al sector empresarial y académico.</p>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide3">
+    <h2 class="slide-title">Core Development & Frameworks</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="tile">
+                <i class="fa-brands fa-python"></i>
+                <h3>Python / PHP</h3>
+                <p>Desarrollo de scripts middleware, automatización OCR y sistemas de backend escalables con lógica avanzada.</p>
+            </div>
+            <div class="tile">
+                <i class="fa-solid fa-layer-group"></i>
+                <h3>Odoo / Laravel</h3>
+                <p>Configuración y personalización de ERPs y frameworks de alto rendimiento para gestión empresarial.</p>
+            </div>
+            <div class="tile">
+                <i class="fa-solid fa-database"></i>
+                <h3>DB Architecture</h3>
+                <p>Especialista en MySQL, SQL Server y SSMS. Diseño de esquemas complejos y administración de datos críticos.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide11">
+    <h2 class="slide-title">Formación & Credenciales</h2>
+    <div class="content-area">
+        <div class="table-layout">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Institución</th>
+                        <th>Grado / Certificación</th>
+                        <th>Estado / Año</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>UNEFA</td>
+                        <td><strong>Ingeniería de Sistemas</strong></td>
+                        <td class="accent-text">Graduada</td>
+                    </tr>
+                    <tr>
+                        <td>FEVP</td>
+                        <td>Diplomado Gestión Desechos Sólidos</td>
+                        <td>2020</td>
+                    </tr>
+                    <tr>
+                        <td>ASOJOVENPRO</td>
+                        <td>Técnico Avanzado en Computadoras</td>
+                        <td>2018</td>
+                    </tr>
+                    <tr>
+                        <td>UNEFA</td>
+                        <td>Diplomado Docente Multimodal</td>
+                        <td class="accent-text">Mayo 2024</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide12" style="background-color: #000; border: 2px solid #00ff41;">
+    <div class="content-area" style="text-align: center; align-items: center;">
+        <h2 style="font-size: 64px; color: #00ff41;">READY FOR CONNECTION_</h2>
+        <div style="margin-top: 40px; display: flex; gap: 40px;">
+            <p><i class="fa-solid fa-envelope" style="color: #00ff41;"></i> marianadj1909@gmail.com</p>
+            <p><i class="fa-solid fa-phone" style="color: #00ff41;"></i> +58 0424-6249849</p>
+        </div>
+        <p class="accent-text" style="margin-top: 60px; font-size: 14px;">ZULIA, VENEZUELA // 2025 SYSTEM RUNNING</p>
+    </div>
+</div>
+
+</body>
+</html>
