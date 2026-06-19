@@ -3,212 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mariana Barreto - Systems Engineering Portfolio</title>
+    <title>Mariana Barreto - Portfolio de Ingeniería</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&family=Azeret+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;700&family=Azeret+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* CONFIGURACIÓN DE BASE */
-        * { box-sizing: border-box; }
+        /* CONFIGURACIÓN BASE Y SCROLLBAR */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            background-color: #0a0a0a;
-            display: grid; gap: 40px; grid-template-columns: 1fr;
-            margin: 0; min-height: 100vh; padding: 40px 0; place-items: center;
+            background-color: #050505; color: #d1d1d1;
+            font-family: 'Urbanist', sans-serif;
+            display: flex; flex-direction: column; align-items: center;
+            padding: 40px 20px; gap: 40px;
         }
-        .slide-container {
-            align-items: flex-start; background-color: #000000;
-            border: 1px solid #1a1a1a; border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
-            display: flex; flex-direction: column; font-family: 'Urbanist', sans-serif;
-            height: 720px; justify-content: center; overflow: hidden;
-            padding: 60px; position: relative; width: 1280px;
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #111; }
+        ::-webkit-scrollbar-thumb { background: #00ff41; border-radius: 10px; }
+
+        /* CONTENEDOR PRINCIPAL TIPO TERMINAL */
+        .portfolio-container {
+            background-color: #0a0a0a; border: 1px solid #1a1a1a;
+            border-radius: 12px; box-shadow: 0 0 40px rgba(0, 255, 65, 0.05);
+            width: 100%; max-width: 1200px; overflow: hidden;
+            position: relative;
         }
-        .slide-container::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(0, 255, 65, 0.04) 0%, transparent 40%); z-index: 0;
+        .portfolio-header {
+            background: linear-gradient(90deg, #111 0%, #050505 100%);
+            border-bottom: 1px solid #222; padding: 60px;
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .slide-container::after {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(#1a1a1a 1px, transparent 1px);
-            background-size: 30px 30px; opacity: 0.3; z-index: 0;
+        .title-block h1 { font-size: 64px; color: #f5f5f5; line-height: 1; margin-bottom: 10px; }
+        .title-block span { color: #00ff41; }
+        .title-block h2 { font-size: 24px; color: #888; font-family: 'Azeret Mono', monospace; letter-spacing: 2px; }
+        .contact-info { text-align: right; font-family: 'Azeret Mono', monospace; font-size: 14px; }
+        .contact-info p { margin-bottom: 8px; color: #aaa; }
+        .contact-info i { color: #00ff41; margin-right: 8px; }
+
+        /* SECCIONES INTERNAS */
+        .section { padding: 50px 60px; border-bottom: 1px solid #1a1a1a; }
+        .section:last-child { border-bottom: none; }
+        .section-title {
+            font-size: 32px; color: #00ff41; margin-bottom: 30px;
+            text-transform: uppercase; letter-spacing: 2px;
+            display: flex; align-items: center; gap: 15px;
         }
-        .slide-container > * { position: relative; z-index: 1; }
-        h1, h2, h3 { color: #f5f5f5; font-family: 'Urbanist', sans-serif; margin: 0; }
-        .slide-title {
-            font-size: 42px; font-weight: 700; margin-bottom: 35px; text-align: left;
-            width: 100%; border-left: 6px solid #00ff41; padding-left: 20px;
-            color: #00ff41; text-transform: uppercase; letter-spacing: 2px;
-        }
-        p, li, td, th { color: #d1d1d1; font-size: 19px; line-height: 1.6; }
-        .accent-text { color: #00ff41; font-family: 'Azeret Mono', monospace; }
-        .content-area { display: flex; flex-direction: column; flex-grow: 1; justify-content: center; width: 100%; }
-        .tiled-content { display: flex; gap: 25px; width: 100%; }
-        .tile {
-            background-color: #0a0a0a; border: 1px solid #222; border-radius: 8px;
-            flex: 1; padding: 25px; display: flex; flex-direction: column; gap: 12px; transition: all 0.3s;
-        }
-        .tile:hover { border-color: #00ff41; background-color: #0d0d0d; }
-        .tile i { color: #00ff41; font-size: 32px; }
-        .tile h3 { color: #00ff41; font-family: 'Azeret Mono', monospace; font-size: 20px; }
-        .tile p { font-size: 17px; }
-        .table-layout table { width: 100%; border-collapse: collapse; }
-        .table-layout th { background-color: #111; color: #00ff41; text-align: left; padding: 15px 20px; font-family: 'Azeret Mono', monospace; font-size: 18px; }
-        .table-layout td { padding: 15px 20px; border-bottom: 1px solid #222; font-size: 18px; }
-        .quote-layout { text-align: center; max-width: 950px; margin: 0 auto; }
-        .quote-layout blockquote { font-size: 36px; color: #f5f5f5; font-style: italic; border: none; padding: 0; margin-bottom: 20px; line-height: 1.4; }
-        .quote-layout blockquote::before { content: '>'; color: #00ff41; margin-right: 15px; font-family: 'Azeret Mono', monospace; }
-        .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; width: 100%; }
-        .project-card { background: #050505; border: 1px solid #1a1a1a; padding: 20px; border-radius: 8px; }
-        .project-card h4 { color: #00ff41; font-family: 'Azeret Mono', monospace; margin: 0 0 10px 0; font-size: 19px; }
-        .project-card p { font-size: 16px; margin: 0; }
+        .section-title::before { content: '>'; font-family: 'Azeret Mono', monospace; }
+
+        /* RESUMEN Y COMPETENCIAS */
+        .summary-text { font-size: 20px; line-height: 1.7; margin-bottom: 40px; color: #ccc; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .skill-card { background: #111; border-left: 3px solid #00ff41; padding: 20px; border-radius: 4px; }
+        .skill-card h4 { color: #fff; font-family: 'Azeret Mono', monospace; margin-bottom: 10px; font-size: 16px; }
+        .skill-card p { font-size: 16px; line-height: 1.5; color: #aaa; }
+
+        /* EXPERIENCIA LABORAL (TIMELINE) */
+        .job { margin-bottom: 40px; }
+        .job:last-child { margin-bottom: 0; }
+        .job-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 15px; border-bottom: 1px dashed #333; padding-bottom: 10px; }
+        .job-title h3 { font-size: 24px; color: #fff; margin-bottom: 5px; }
+        .job-title span { color: #00ff41; font-family: 'Azeret Mono', monospace; font-size: 16px; }
+        .job-date { color: #666; font-family: 'Azeret Mono', monospace; font-size: 14px; }
+        .job-details { list-style: none; }
+        .job-details li { margin-bottom: 10px; font-size: 18px; line-height: 1.5; position: relative; padding-left: 20px; }
+        .job-details li::before { content: '•'; color: #00ff41; position: absolute; left: 0; font-weight: bold; }
+
+        /* PROYECTOS */
+        .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .project { background: #080808; border: 1px solid #222; padding: 30px; border-radius: 8px; transition: 0.3s; }
+        .project:hover { border-color: #00ff41; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,255,65,0.05); }
+        .project h3 { color: #00ff41; font-size: 20px; margin-bottom: 15px; font-family: 'Azeret Mono', monospace; }
+        .project p { font-size: 17px; line-height: 1.6; color: #bbb; }
+
+        /* EDUCACIÓN */
+        .edu-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #222; }
+        .edu-item:last-child { border-bottom: none; }
+        .edu-item h4 { font-size: 18px; color: #ddd; }
+        .edu-item p { font-family: 'Azeret Mono', monospace; color: #888; font-size: 14px; }
     </style>
 </head>
 <body>
 
-<div class="slide-container" id="slide1">
-    <div class="content-area" style="text-align: center; align-items: center;">
-        <p class="accent-text" style="font-size: 24px; margin-bottom: 10px;">SYSTEM_INIT: CORE_ENGAGED</p>
-        <h1 style="font-size: 80px; line-height: 1; margin-bottom: 20px; letter-spacing: -1px;">MARIANA <span style="color: #00ff41;">BARRETO</span></h1>
-        <p style="font-size: 28px; letter-spacing: 5px; border-top: 1px solid #222; padding-top: 20px; width: 650px; color: #aaa;">INGENIERA DE SISTEMAS</p>
-    </div>
-</div>
-
-<div class="slide-container" id="slide2">
-    <div class="content-area">
-        <div class="quote-layout">
-            <p class="accent-text">// PROFESSIONAL_MISSION_LOG</p>
-            <blockquote>Optimizar arquitecturas críticas, automatizar flujos complejos mediante programación avanzada e inteligencia artificial, y consolidar infraestructuras seguras y portables bajo metodologías ágiles.</blockquote>
-            <p style="font-size: 22px; color: #666; font-family: 'Azeret Mono', monospace;">Soluciones de Software Basadas en Datos y Eficiencia Técnica.</p>
+<div class="portfolio-container">
+    
+    <header class="portfolio-header">
+        <div class="title-block">
+            <h1>MARIANA <span>BARRETO</span></h1>
+            <h2>INGENIERA DE SISTEMAS</h2>
         </div>
-    </div>
-</div>
-
-<div class="slide-container" id="slide3">
-    <h2 class="slide-title">Stack Tecnológico & Ecosistema DevOps</h2>
-    <div class="content-area">
-        <div class="tiled-content">
-            <div class="tile">
-                <i class="fa-brands fa-python"></i>
-                <h3>Desarrollo Core</h3>
-                <p>Construcción de lógica de negocio robusta usando Python, Django, React, PHP, Laravel y arquitecturas MVC/API.</p>
-            </div>
-            <div class="tile">
-                <i class="fa-solid fa-cubes"></i>
-                <h3>DevOps & Entornos</h3>
-                <p>Virtualización y portabilidad mediante contenedores en <strong>Docker</strong> integrados sobre distribuciones avanzadas WSL2 (Ubuntu).</p>
-            </div>
-            <div class="tile">
-                <i class="fa-solid fa-database"></i>
-                <h3>Arquitectura de Datos</h3>
-                <p>Administración y optimización avanzada en SQL Server (SSMS), MySQL, Workbench, DBeaver y esquemas relacionales complejos.</p>
-            </div>
+        <div class="contact-info">
+            <p><i class="fa-solid fa-location-dot"></i> Zulia, Venezuela</p>
+            <p><i class="fa-solid fa-envelope"></i> marianadj1909@gmail.com</p>
+            <p><i class="fa-solid fa-phone"></i> +58 0424-6249849</p>
+            <p style="color: #666; margin-top: 10px;">C.I: 26.795.213</p>
         </div>
-    </div>
-</div>
+    </header>
 
-<div class="slide-container" id="slide4">
-    <h2 class="slide-title">Soluciones FinTech e Innovación Operativa</h2>
-    <div class="content-area">
-        <div class="table-layout">
-            <table>
-                <thead>
-                    <tr>
-                        <th style="width: 30%">Área de Impacto</th>
-                        <th>Tecnologías e Implementación en CREDIMARA C.A</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="accent-text">Auditoría & FinTech</td>
-                        <td>Ejecución de auditorías de bancos y desarrollo del módulo de consolidación bancaria automatizado para domiciliaciones masivas (BDV, Banesco, Mercantil, Provincial, BNC, BDT, BANFANB).</td>
-                    </tr>
-                    <tr>
-                        <td class="accent-text">Sistemas Corporativos</td>
-                        <td>Diseño y despliegue en Python de un sistema escalable de tickets de soporte técnico provisto de métricas analíticas avanzadas y módulos de auditoría interna.</td>
-                    </tr>
-                    <tr>
-                        <td class="accent-text">Automatización de Datos</td>
-                        <td>Integración de scripts middleware en Python acoplados a recursos OpenSource para el procesamiento automatizado mediante tecnologías OCR y optimización de base de datos Asifun.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<div class="slide-container" id="slide5">
-    <h2 class="slide-title">Proyectos Tecnológicos Clave</h2>
-    <div class="content-area">
-        <div class="project-grid">
-            <div class="project-card">
-                <h4>01 // Módulo de Consolidación Multibanco</h4>
-                <p>Sistema transaccional de conciliación financiera automatizada que unifica los flujos de cobros y respuestas de las principales entidades bancarias de Venezuela.</p>
+    <div class="section">
+        <h2 class="section-title">System_Overview</h2>
+        <p class="summary-text">
+            Ingeniera de Sistemas y Docente Universitaria con sólida trayectoria en innovación tecnológica, desarrollo de software y administración de bases de datos críticas. Especializada en entornos de alta exigencia financiera y administrativa, con experiencia demostrada en la ejecución de auditorías bancarias, conciliación de cuentas y automatización de procesos mediante la integración de Inteligencia Artificial (IA) y arquitecturas robustas. Capacidad para liderar proyectos tecnológicos complejos, articulando soluciones de desarrollo moderno con infraestructura DevOps (virtualización y contenedores) y la formación académica de futuros profesionales del área.
+        </p>
+        
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h4><i class="fa-solid fa-code" style="color: #00ff41;"></i> Development</h4>
+                <p>Python, PHP, C, Django, React, Laravel, Bootstrap, Odoo.</p>
             </div>
-            <div class="project-card">
-                <h4>02 // Sistema de Gestión de Tickets</h4>
-                <p>Plataforma interna desarrollada en Python para la trazabilidad operativa del área de IT, incorporando reportes analíticos de rendimiento y auditorías de datos.</p>
+            <div class="skill-card">
+                <h4><i class="fa-solid fa-server" style="color: #00ff41;"></i> Infraestructura & DevOps</h4>
+                <p>Docker (Contenedores), WSL2 (Ubuntu), GITBash, Livewire.</p>
             </div>
-            <div class="project-card">
-                <h4>03 // Entornos de Desarrollo Dockerizados</h4>
-                <p>Estandarización de arquitecturas de desarrollo aisladas usando Docker Desktop y WSL2, mitigando errores de configuración y acelerando el ciclo de despliegue.</p>
+            <div class="skill-card">
+                <h4><i class="fa-solid fa-database" style="color: #00ff41;"></i> Data Architecture</h4>
+                <p>MySQL, SQL Server (SSMS), Workbench, HeidiSQL, DBeaver.</p>
             </div>
-            <div class="project-card">
-                <h4>04 // Plataforma Web SoporteCBZ</h4>
-                <p>Aplicación de uso corporativo implementada para el control, inventariado y trazabilidad automatizada de asignación de hardware en CARBOZULIA.</p>
+            <div class="skill-card">
+                <h4><i class="fa-solid fa-microchip" style="color: #00ff41;"></i> Inteligencia Artificial</h4>
+                <p>Prompt Engineering, Gemini, ChatGPT, Claude, Sora, DeepSeek.</p>
             </div>
         </div>
     </div>
-</div>
 
-<div class="slide-container" id="slide6">
-    <h2 class="slide-title">Trayectoria Académica & Docencia</h2>
-    <div class="content-area">
-        <div class="table-layout">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Institución</th>
-                        <th>Grado / Rol Profesional</th>
-                        <th>Período / Estatus</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>UNEFA (Núcleo Zulia)</td>
-                        <td><strong>Ingeniera de Sistemas</strong></td>
-                        <td class="accent-text">Titulada</td>
-                    </tr>
-                    <tr>
-                        <td>UNEFA (Eje Académico)</td>
-                        <td>Docente Universitaria — Cátedra de <strong>Sistemas Operativos</strong></td>
-                        <td>Enero 2024 - Actualidad</td>
-                    </tr>
-                    <tr>
-                        <td>UNEFA</td>
-                        <td>Diplomado en Docencia Multimodal</td>
-                        <td class="accent-text">Mayo 2024</td>
-                    </tr>
-                    <tr>
-                        <td>FEVP / ASOJOVENPRO</td>
-                        <td>Diplomado en Planificación de Desechos / Técnico Avanzado en Computadoras</td>
-                        <td>Certificada</td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="section">
+        <h2 class="section-title">Experiencia Laboral</h2>
+        
+        <div class="job">
+            <div class="job-header">
+                <div class="job-title">
+                    <h3>Creditos Funerarios Maracaibo, CREDIMARA C.A</h3>
+                    <span>Analista de Innovación y Tecnología</span>
+                </div>
+                <div class="job-date">Junio 2025 - Actualidad</div>
+            </div>
+            <ul class="job-details">
+                <li><strong>Infraestructura y DevOps:</strong> Configuración, despliegue y gestión de entornos virtuales utilizando contenedores en Docker sobre distribuciones Linux (WSL2 Ubuntu).</li>
+                <li><strong>Desarrollo de Software Interno:</strong> Diseño e implementación de un sistema de tickets de soporte técnico robusto en Python, con auditorías, reportes analíticos y métricas operativas.</li>
+                <li><strong>Desarrollo FinTech:</strong> Análisis y desarrollo de un módulo automatizado de reportes de consolidación bancaria para el procesamiento masivo de domiciliaciones (BDV, Banesco, Mercantil, Provincial, BNC, BDT, BANFANB).</li>
+                <li><strong>Auditoría Financiera:</strong> Ejecución de auditorías de bancos y conciliación de cuentas de alta sensibilidad.</li>
+                <li><strong>Administración de Datos:</strong> Gestión y mantenimiento de la base de datos crítica del sistema core Asifun.</li>
+                <li><strong>Automatización:</strong> Programación de scripts middleware en Python y despliegue de recursos OpenSource para OCR.</li>
+                <li><strong>Ecosistema IA:</strong> Diseño de Prompts avanzados e integración de APIs (Zapier, UltraVox, Meta, Manychat, AsterSIPVox).</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <div class="job-title">
+                    <h3>Grupo Aliadas, C.A</h3>
+                    <span>Analista del departamento de Sistemas</span>
+                </div>
+                <div class="job-date">Marzo 2024 - Mayo 2025</div>
+            </div>
+            <ul class="job-details">
+                <li>Supervisión y ejecución del despliegue del sistema ERP corporativo Profit Plus 2kDoce y terminales lanPOS.</li>
+                <li>Asistencia técnica especializada y resolución de incidencias en el ecosistema administrativo PSKloud.</li>
+                <li>Asesoría técnica y capacitación continua al personal ejecutivo y operativo de la organización.</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <div class="job-title">
+                    <h3>UNEFA, Núcleo Zulia</h3>
+                    <span>Docente Universitaria</span>
+                </div>
+                <div class="job-date">Enero 2024 - Actualidad</div>
+            </div>
+            <ul class="job-details">
+                <li>Formación técnica, diseño curricular y evaluación continua de estudiantes de Ingeniería de Sistemas en la cátedra fundamental de Sistemas Operativos.</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <div class="job-title">
+                    <h3>Carbones del Zulia, CARBOZULIA</h3>
+                    <span>Analista de Soporte y Redes (Pasantías)</span>
+                </div>
+                <div class="job-date">Marzo 2023 - Julio 2023</div>
+            </div>
+            <ul class="job-details">
+                <li>Configuración, enrutamiento y administración de servidores, routers y equipos de telecomunicaciones Mikrotik.</li>
+                <li>Liderazgo en el análisis, desarrollo y despliegue del sistema web "SoporteCBZ" para el área de Informática.</li>
+            </ul>
         </div>
     </div>
-</div>
 
-<div class="slide-container" id="slide7" style="background-color: #000; border: 2px solid #00ff41;">
-    <div class="content-area" style="text-align: center; align-items: center;">
-        <h2 style="font-size: 58px; color: #00ff41; letter-spacing: -1px;">READY FOR PRODUCTION_</h2>
-        <div style="margin-top: 40px; display: flex; gap: 50px;">
-            <p><i class="fa-solid fa-envelope" style="color: #00ff41; margin-right: 10px;"></i> marianadj1909@gmail.com</p>
-            <p><i class="fa-solid fa-phone" style="color: #00ff41; margin-right: 10px;"></i> +58 0424-6249849</p>
+    <div class="section">
+        <h2 class="section-title">Proyectos Destacados</h2>
+        <div class="projects-grid">
+            <div class="project">
+                <h3>// Módulo de Consolidación Multibanco</h3>
+                <p>Solución digital para CREDIMARA que automatiza la conciliación de cobros y domiciliaciones para las principales entidades financieras públicas y privadas de Venezuela, reduciendo drásticamente los tiempos de auditoría contable.</p>
+            </div>
+            <div class="project">
+                <h3>// Sistema de Tickets de Soporte</h3>
+                <p>Aplicación corporativa desarrollada en Python orientada a la gestión y trazabilidad de incidencias técnicas, provista de herramientas estadísticas y auditorías internas.</p>
+            </div>
+            <div class="project">
+                <h3>// Sistema de Punto de Venta (POS)</h3>
+                <p>Diseño e implementación activa de un software transaccional moderno utilizando Python y Django, integrado con bases de datos relacionales para optimizar operaciones comerciales.</p>
+            </div>
+            <div class="project">
+                <h3>// Arquitecturas Contenedorizadas</h3>
+                <p>Orquestación y configuración avanzada de entornos de desarrollo aislados utilizando Docker Desktop sobre WSL2 (Ubuntu) en Windows.</p>
+            </div>
+            <div class="project" style="grid-column: 1 / -1;">
+                <h3>// Plataforma Web SoporteCBZ</h3>
+                <p>Aplicación web dedicada a la gestión de inventario, trazabilidad y asignación interna de equipos de cómputo en la sede Casa Mene Grande, CARBOZULIA.</p>
+            </div>
         </div>
-        <p class="accent-text" style="margin-top: 60px; font-size: 14px; letter-spacing: 2px;">ZULIA, VENEZUELA // ENVIRONMENT RUNNING STEADY</p>
     </div>
+
+    <div class="section">
+        <h2 class="section-title">Academia_y_Certificaciones</h2>
+        <div class="edu-item">
+            <h4>Ingeniería de Sistemas - UNEFA</h4>
+            <p>Titulada</p>
+        </div>
+        <div class="edu-item">
+            <h4>Diplomado Docente Multimodal - UNEFA</h4>
+            <p>Mayo 2024</p>
+        </div>
+        <div class="edu-item">
+            <h4>Diplomado Gestión Residuos y Desechos Sólidos - FEVP</h4>
+            <p>2020</p>
+        </div>
+        <div class="edu-item">
+            <h4>Técnico avanzado en computadoras - ASOJOVENPRO</h4>
+            <p>2018</p>
+        </div>
+    </div>
+
 </div>
 
 </body>
